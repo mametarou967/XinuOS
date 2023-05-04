@@ -45,6 +45,11 @@ make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
 * 本体プロジェクトをダウンロードする
     * <方法1>安定版:本家のリンク[An ARM version (BeagleBone Black board from TI)](https://www.cs.purdue.edu/homes/comer/downloads/Xinu_Book_And_Code/BeagleBoneBlack/Xinu-BeagleBoneBlack.tar.gz)からダウンロードする
     * <方法2>最新版:github版[real-xinu/xinu-bbb](https://github.com/real-xinu/xinu-bbb)からダウンロードする
+* ソースの修正:ethernet関係のソースがうまく動作しないので、その処理をコメントアウトする
+    * `device/eth/ethinit.c`のethinit()関数の中身をすべて削除
+    * `system/initialize.c`
+        * `nulluser()`関数内の`net_init();`をコメントアウト
+        * `startup()`関数内のdhcp関係のソースをすべてコメントアウト
 * Makefileを修正する
     * コンパイラの修正(同梱の実行できないものではなく、インストールしたものを指定するように変更する)
 ```
@@ -88,11 +93,14 @@ boot_mmc=fatload mmc 0 0x80200000 ${bootfile}; bootm
 uenvcmd=run boot_mmc
 ```
 
-### 参考手順書
+## 結果
+
+以下のようにコンソールに大きくXinuの文字が出れば成功。シェルが起動しているので、echoコマンドなどが実行できる
+![](images/top.png)
+
+### 参考資料
 
 * [XinuBBB](https://github.com/jarrocha/XinuBBB)
-* [Getting started with Embedded Xinu](https://github.com/xinu-os/xinu/blob/master/docs/Getting-Started.rst)
-
-### (kernelをコンパイルするための)クロスコンパイラの設定
-
-* [ARMのGCCコンパイル環境を構築する](https://www.yokoweb.net/2018/03/07/wsl-ubuntu-arm-gcc/)
+* [Getting started with Embedded Xinu](https://github.com/xinu-os/xinu/blob/master/docs/Getting-Started.rst)]
+* [Beagleboard:Main_Page](https://elinux.org/Beagleboard:Main_Page)
+* [Debugging U Boot errors on the BeagleBone Black rev C](https://www.reddit.com/r/osdev/comments/tgdm2y/debugging_u_boot_errors_on_the_beaglebone_black/):ethernet関係のソースがあると起動しない問題について
