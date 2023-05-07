@@ -69,6 +69,17 @@ make -j8 ARCH=arm CROSS_COMPILE=arm-linux-gnueabi-
   PLAT		=	Platform_$(PNAME)
   TOPDIR		=	..
 ```
+
+   * 共有ライブラリのパスの修正(同梱のものではなく、インストールしたものを指定するように変更する) ※実施しなくても問題はない
+
+```
+  xinu:   Makefile rebuild $(BLDDIRS) $(DEFSFILE) $(DEPSFILE) $(CONFH) $(CONFC) $(LD_LIST)
+          @echo;echo 'Loading object files to produce xinu'
+-         @$(LD) $(LDFLAGS) $(LD_LIST) -o $(XINU) -L../cross_compiler/lib/gcc/arm-none-eabi/4.8.1/ -lgcc
++         @$(LD) $(LDFLAGS) $(LD_LIST) -o $(XINU) -L/usr/lib/gcc/arm-none-eabi/X.X.X/ -lgcc
+          @$(OBJCOPY) -O binary $(XINU) $(XINUBIN)
+          @./uboot-tool/mkimage -A arm -O linux -T kernel -C none -a 0x81000000 -e 0x81000000 -d $(XINUBIN) $(XINUBOOT)
+```
 * mkimageの再配置
     * `uboot-tool`配下の`mkimage`もarch違いにより実行できないため、削除し、前段階で環境作成時に生成されている`mkimage`をコピーして配置する
 * ビルド
