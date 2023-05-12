@@ -27,64 +27,22 @@ extern	struct	dentry	devtab[]; /* one entry per device */
 
 #define CONSOLE              0	/* type tty      */
 #define NULLDEV              1	/* type null     */
-#define ETHER0               2	/* type eth      */
-#define NAMESPACE            3	/* type nam      */
-#define RDISK                4	/* type rds      */
-#define RAM0                 5	/* type ram      */
-#define RFILESYS             6	/* type rfs      */
-#define RFILE0               7	/* type rfl      */
-#define RFILE1               8	/* type rfl      */
-#define RFILE2               9	/* type rfl      */
-#define RFILE3              10	/* type rfl      */
-#define RFILE4              11	/* type rfl      */
-#define RFILE5              12	/* type rfl      */
-#define RFILE6              13	/* type rfl      */
-#define RFILE7              14	/* type rfl      */
-#define RFILE8              15	/* type rfl      */
-#define RFILE9              16	/* type rfl      */
-#define LFILESYS            17	/* type lfs      */
-#define LFILE0              18	/* type lfl      */
-#define LFILE1              19	/* type lfl      */
-#define LFILE2              20	/* type lfl      */
-#define LFILE3              21	/* type lfl      */
-#define LFILE4              22	/* type lfl      */
-#define LFILE5              23	/* type lfl      */
-#define GPIO0               24	/* type gpio     */
-#define GPIO1               25	/* type gpio     */
-#define GPIO2               26	/* type gpio     */
-#define GPIO3               27	/* type gpio     */
-#define SPI0                28	/* type spi      */
-#define SPI1                29	/* type spi      */
-#define PIPE                30	/* type pipem    */
-#define PIPE0               31	/* type pip      */
-#define PIPE1               32	/* type pip      */
-#define PIPE2               33	/* type pip      */
-#define PIPE3               34	/* type pip      */
-#define PIPE4               35	/* type pip      */
-#define PIPE5               36	/* type pip      */
-#define PIPE6               37	/* type pip      */
-#define PIPE7               38	/* type pip      */
-#define PIPE8               39	/* type pip      */
-#define PIPE9               40	/* type pip      */
+#define NAMESPACE            2	/* type nam      */
+#define RAM0                 3	/* type ram      */
+#define GPIO0                4	/* type gpio     */
+#define GPIO1                5	/* type gpio     */
+#define GPIO2                6	/* type gpio     */
+#define GPIO3                7	/* type gpio     */
 
 /* Control block sizes */
 
 #define	Nnull	1
 #define	Ntty	1
-#define	Neth	1
-#define	Nrds	1
 #define	Nram	1
-#define	Nrfs	1
-#define	Nrfl	10
-#define	Nlfs	1
-#define	Nlfl	6
 #define	Nnam	1
 #define	Ngpio	4
-#define	Nspi	2
-#define	Npipem	1
-#define	Npip	10
 
-#define NDEVS 41
+#define NDEVS 8
 
 
 /* Configuration and Size Constants */
