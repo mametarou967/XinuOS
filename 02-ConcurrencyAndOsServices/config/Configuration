@@ -48,14 +48,6 @@ nam:
 		-w ioerr 	-s ioerr 	-n ioerr
 		-intr ioerr
 
-/* type of a gpio device */
-
-gpio:
-	on am335x_gpio
-		-i gpioinit      -o ionull       -c ionull
-		-r gpioread      -g ionull       -p ionull
-		-w gpiowrite     -s ioerr        -n gpiocontrol
-		-intr gpiohandler
 
 %%
 
@@ -74,12 +66,6 @@ gpio:
    /* Define a ram disk device */
    RAM0 is ram on mem
 
-   /* Define the four GPIO devices and the CSR/IRQ for each */
-
-   GPIO0 is gpio  on am335x_gpio  csr 0x44E07000 -irq 96
-   GPIO1 is gpio  on am335x_gpio  csr 0x4804C000 -irq 98
-   GPIO2 is gpio  on am335x_gpio  csr 0x481AC000 -irq 32
-   GPIO3 is gpio  on am335x_gpio  csr 0x481AE000 -irq 62
 
 %%
 

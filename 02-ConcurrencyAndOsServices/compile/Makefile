@@ -33,8 +33,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/lib			\
 			-s $(TOPDIR)/device/tty			\
 			-s $(TOPDIR)/device/nam			\
-			-s $(TOPDIR)/device/ram			\
-			-s $(TOPDIR)/device/gpio		
+			-s $(TOPDIR)/device/ram			
 
 INCLUDE		=	-I$(TOPDIR)/include
 DEFS		= 	-DBSDURG -DVERSION=\""`cat $(VERSIONFILE)`"\"
