@@ -115,3 +115,4 @@ uenvcmd=run boot_mmc
 * [Getting started with Embedded Xinu](https://github.com/xinu-os/xinu/blob/master/docs/Getting-Started.rst)]
 * [Beagleboard:Main_Page](https://elinux.org/Beagleboard:Main_Page)
 * [Debugging U Boot errors on the BeagleBone Black rev C](https://www.reddit.com/r/osdev/comments/tgdm2y/debugging_u_boot_errors_on_the_beaglebone_black/):ethernet関係のソースがあると起動しない問題について
+* [wsl/ubuntu上でTFTPサーバを動かす](https://www.yokoweb.net/2019/10/15/ubuntu-server-tftpd-install/)
