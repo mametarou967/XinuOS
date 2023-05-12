@@ -31,9 +31,7 @@ LDSCRIPT	=	ld.script
 MKVERS		=	$(TOPDIR)/compile/bin/mkvers
 REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/lib			\
-			-s $(TOPDIR)/device/tty			\
-			-s $(TOPDIR)/device/nam			\
-			-s $(TOPDIR)/device/ram			
+			-s $(TOPDIR)/device/tty			
 
 INCLUDE		=	-I$(TOPDIR)/include
 DEFS		= 	-DBSDURG -DVERSION=\""`cat $(VERSIONFILE)`"\"

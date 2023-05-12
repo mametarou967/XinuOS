@@ -32,22 +32,6 @@ tty:
 		-w ttywrite     -s ioerr        -n ttycontrol
 		-intr ttyhandler
 
-/* type of ram disk */
-ram:
-	on mem
-		-i raminit	-o ramopen	-c ramclose
-		-r ramread	-g ioerr	-p ioerr
-		-w ramwrite	-s ioerr	-n ioerr
-		-intr ionull
-
-/* type of namespace device */
-nam:
-	on top
-		-i naminit 	-o namopen 	-c ioerr
-		-r ioerr 	-g ioerr 	-p ioerr
-		-w ioerr 	-s ioerr 	-n ioerr
-		-intr ioerr
-
 
 %%
 
@@ -59,13 +43,6 @@ nam:
    
    /* Define a null device */
    NULLDEV is null on nothing
-
-   /* Define a namespace device */
-   NAMESPACE is nam on top
-   
-   /* Define a ram disk device */
-   RAM0 is ram on mem
-
 
 %%
 

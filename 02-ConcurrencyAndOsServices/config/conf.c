@@ -31,19 +31,5 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)ionull, (void *)ionull, (void *)ionull,
 	  (void *)ionull, (void *)ionull, (void *)ioerr,
 	  (void *)ionull, (void *)ionull, (void *)ioerr,
-	  (void *)0x0, (void *)ioerr, 0 },
-
-/* NAMESPACE is nam */
-	{ 2, 0, "NAMESPACE",
-	  (void *)naminit, (void *)namopen, (void *)ioerr,
-	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x0, (void *)ioerr, 0 },
-
-/* RAM0 is ram */
-	{ 3, 0, "RAM0",
-	  (void *)raminit, (void *)ramopen, (void *)ramclose,
-	  (void *)ramread, (void *)ramwrite, (void *)ioerr,
-	  (void *)ioerr, (void *)ioerr, (void *)ioerr,
-	  (void *)0x0, (void *)ionull, 0 }
+	  (void *)0x0, (void *)ioerr, 0 }
 };
