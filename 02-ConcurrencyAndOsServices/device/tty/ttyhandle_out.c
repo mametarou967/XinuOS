@@ -28,8 +28,9 @@ void	ttyhandle_out(
 
 	/* If echo and output queues empty, turn off interrupts */
 
-	if ( (typtr->tyehead == typtr->tyetail) &&
-	     (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
+	if (typtr->tyehead == typtr->tyetail) // &&
+	     // (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
+	{
 		ier = csrptr->ier;
 		csrptr->ier = ier & ~UART_IER_ETBEI;
 		return;
@@ -54,7 +55,8 @@ void	ttyhandle_out(
 	/*   nonempty, transmit chars from the output queue		*/
 
 	ochars = 0;
-	avail = TY_OBUFLEN - semcount(typtr->tyosem);
+	// avail = TY_OBUFLEN - semcount(typtr->tyosem);
+	avail = 0;
 	while ( (uspace>0) &&  (avail > 0) ) {
 		csrptr->buffer = *typtr->tyohead++;
 		if (typtr->tyohead >= &typtr->tyobuff[TY_OBUFLEN]) {
@@ -65,11 +67,12 @@ void	ttyhandle_out(
 		ochars++;
 	}
 	if (ochars > 0) {
-		signaln(typtr->tyosem, ochars);
+		// signaln(typtr->tyosem, ochars);
 	}
 
-	if ( (typtr->tyehead == typtr->tyetail) &&
-	     (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
+	if (typtr->tyehead == typtr->tyetail) // &&
+	     // (semcount(typtr->tyosem) >= TY_OBUFLEN) ) {
+	{
 		ier = csrptr->ier;
 		csrptr->ier = (ier & ~UART_IER_ETBEI);
 	}

@@ -22,7 +22,8 @@ void	ttyhandle_in (
 
 	/* Compute chars available */
 
-	avail = semcount(typtr->tyisem);
+	// avail = semcount(typtr->tyisem);
+	avail = 0;
 	if (avail < 0) {		/* One or more processes waiting*/
 		avail = 0;
 	}
@@ -45,7 +46,7 @@ void	ttyhandle_in (
 		}
 
 		/* Signal input semaphore and return */
-		signal(typtr->tyisem);
+		// signal(typtr->tyisem);
 		return;
 	}
 
@@ -87,7 +88,7 @@ void	ttyhandle_in (
 			if (typtr->tyiecho) {	/* Are we echoing chars?*/
 				echoch(ch, typtr, csrptr);
 			}
-			signal(typtr->tyisem);
+			// signal(typtr->tyisem);
 		}
 		return;
 
@@ -128,7 +129,7 @@ void	ttyhandle_in (
 				typtr->tyitail = typtr->tyibuff;
 			}
 			/* Make entire line (plus \n or \r) available */
-			signaln(typtr->tyisem, typtr->tyicursor + 1);
+			// signaln(typtr->tyisem, typtr->tyicursor + 1);
 			typtr->tyicursor = 0; 	/* Reset for next line	*/
 			return;
 		}
@@ -136,7 +137,8 @@ void	ttyhandle_in (
 		/* Character to be placed in buffer - send bell if	*/
 		/*	buffer has overflowed				*/
 
-		avail = semcount(typtr->tyisem);
+		// avail = semcount(typtr->tyisem);
+		avail = 0;
 		if (avail < 0) {
 			avail = 0;
 		}
@@ -156,7 +158,7 @@ void	ttyhandle_in (
 				return;
 			}
 			*typtr->tyitail++ = ch;
-			signal(typtr->tyisem);
+			// signal(typtr->tyisem);
 			return;
 		}
 

@@ -28,7 +28,8 @@ devcall	ttyread(
 		/* For count of zero, return all available characters */
 
 		if (count == 0) {
-			avail = semcount(typtr->tyisem);
+			// avail = semcount(typtr->tyisem);
+			avail = 0;
 			if (avail == 0) {
 				return 0;
 			} else {

@@ -3,8 +3,8 @@
 #include <xinu.h>
 
 
-extern	devcall	ioerr(void);
-extern	devcall	ionull(void);
+// extern	devcall	ioerr(void);
+// extern	devcall	ionull(void);
 
 /* Device independent I/O switch */
 
@@ -21,15 +21,8 @@ struct	dentry	devtab[NDEVS] =
 
 /* CONSOLE is tty */
 	{ 0, 0, "CONSOLE",
-	  (void *)ttyinit, (void *)ionull, (void *)ionull,
-	  (void *)ttyread, (void *)ttywrite, (void *)ioerr,
+	  (void *)ttyinit, (void *)NULL, (void *)NULL,
+	  (void *)ttyread, (void *)ttywrite, (void *)NULL,
 	  (void *)ttygetc, (void *)ttyputc, (void *)ttycontrol,
-	  (void *)0x44e09000, (void *)ttyhandler, 72 },
-
-/* NULLDEV is null */
-	{ 1, 0, "NULLDEV",
-	  (void *)ionull, (void *)ionull, (void *)ionull,
-	  (void *)ionull, (void *)ionull, (void *)ioerr,
-	  (void *)ionull, (void *)ionull, (void *)ioerr,
-	  (void *)0x0, (void *)ioerr, 0 }
+	  (void *)0x44e09000, (void *)ttyhandler, 72 }
 };

@@ -17,7 +17,7 @@ devcall	ttygetc(
 
 	/* Wait for a character in the buffer and extract one character	*/
 
-	wait(typtr->tyisem);
+	// wait(typtr->tyisem);
 	ch = *typtr->tyihead++;
 
 	/* Wrap around to beginning of buffer, if needed */

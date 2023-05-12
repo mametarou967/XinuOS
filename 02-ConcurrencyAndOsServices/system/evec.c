@@ -81,7 +81,7 @@ void	irq_dispatch()
 
 	/* Defer scheduling until interrupt is acknowledged */
 
-	resched_cntl(DEFER_START);
+	// resched_cntl(DEFER_START);
 
 	/* If a handler is set for the interrupt, call it */
 
@@ -96,7 +96,7 @@ void	irq_dispatch()
 
 	/* Resume scheduling */
 
-	resched_cntl(DEFER_STOP);
+	// resched_cntl(DEFER_STOP);
 }
 
 #if 0

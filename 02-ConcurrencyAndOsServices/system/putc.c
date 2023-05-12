@@ -11,17 +11,17 @@ syscall	putc(
 	  char		ch		/* Character to send		*/
 	)
 {
-	intmask		mask;		/* Saved interrupt mask		*/
+	// intmask		mask;		/* Saved interrupt mask		*/
 	struct dentry	*devptr;	/* Entry in device switch table	*/
 	int32		retval;		/* Value to return to caller	*/
 
-	mask = disable();
+	// mask = disable();
 	if (isbaddev(descrp)) {
-		restore(mask);
+		// restore(mask);
 		return SYSERR;
 	}
 	devptr = (struct dentry *) &devtab[descrp];
 	retval = (*devptr->dvputc) (devptr, ch);
-	restore(mask);
+	// restore(mask);
 	return retval;
 }

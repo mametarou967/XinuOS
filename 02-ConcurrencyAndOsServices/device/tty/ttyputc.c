@@ -21,7 +21,7 @@ devcall	ttyputc(
                 ttyputc(devptr, TY_RETURN);
 	}
 
-	wait(typtr->tyosem);		/* Wait	for space in queue */
+	// wait(typtr->tyosem);		/* Wait	for space in queue */
 	*typtr->tyotail++ = ch;
 
 	/* Wrap around to beginning of buffer, if needed */

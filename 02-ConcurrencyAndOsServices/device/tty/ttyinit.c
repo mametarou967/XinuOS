@@ -21,10 +21,10 @@ devcall	ttyinit(
 
 	typtr->tyihead = typtr->tyitail = 	/* Set up input queue	*/
 		&typtr->tyibuff[0];		/*    as empty		*/
-	typtr->tyisem = semcreate(0);		/* Input semaphore	*/
+	typtr->tyisem = 0;// semcreate(0);		/* Input semaphore	*/
 	typtr->tyohead = typtr->tyotail = 	/* Set up output queue	*/
 		&typtr->tyobuff[0];		/*    as empty		*/
-	typtr->tyosem = semcreate(TY_OBUFLEN);	/* Output semaphore	*/
+	typtr->tyosem = 0 ;// semcreate(TY_OBUFLEN);	/* Output semaphore	*/
 	typtr->tyehead = typtr->tyetail = 	/* Set up echo queue	*/
 		&typtr->tyebuff[0];		/*    as empty		*/
 	typtr->tyimode = TY_IMCOOKED;		/* Start in cooked mode	*/

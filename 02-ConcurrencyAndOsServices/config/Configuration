@@ -17,13 +17,6 @@
 
 /* Type Declarations for both real- and pseudo- device types */
 
-/* type of a null device */
-null:
-	on nothing
-		-i ionull	-o ionull	-c ionull
-		-r ionull	-g ionull	-p ionull
-		-w ionull	-s ioerr
-
 /* type of a tty device */
 tty:
 	on uart
@@ -40,9 +33,6 @@ tty:
 
    /* Define the console device to be a tty and specify CSR*/
    CONSOLE is tty  on uart  csr 0x44E09000 -irq 72
-   
-   /* Define a null device */
-   NULLDEV is null on nothing
 
 %%
 

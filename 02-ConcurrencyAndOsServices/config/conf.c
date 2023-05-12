@@ -24,12 +24,5 @@ struct	dentry	devtab[NDEVS] =
 	  (void *)ttyinit, (void *)ionull, (void *)ionull,
 	  (void *)ttyread, (void *)ttywrite, (void *)ioerr,
 	  (void *)ttygetc, (void *)ttyputc, (void *)ttycontrol,
-	  (void *)0x44e09000, (void *)ttyhandler, 72 },
-
-/* NULLDEV is null */
-	{ 1, 0, "NULLDEV",
-	  (void *)ionull, (void *)ionull, (void *)ionull,
-	  (void *)ionull, (void *)ionull, (void *)ioerr,
-	  (void *)ionull, (void *)ionull, (void *)ioerr,
-	  (void *)0x0, (void *)ioerr, 0 }
+	  (void *)0x44e09000, (void *)ttyhandler, 72 }
 };

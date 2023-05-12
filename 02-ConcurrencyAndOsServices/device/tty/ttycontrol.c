@@ -23,9 +23,9 @@ devcall	ttycontrol(
 	switch ( func )	{
 
 	case TC_NEXTC:
-		wait(typtr->tyisem);
+		// wait(typtr->tyisem);
 		ch = *typtr->tyitail;
-		signal(typtr->tyisem);
+		// signal(typtr->tyisem);
 		return (devcall)ch;
 
 	case TC_MODER:
@@ -41,7 +41,8 @@ devcall	ttycontrol(
 		return (devcall)OK;
 
 	case TC_ICHARS:
-		return(semcount(typtr->tyisem));
+		// return(semcount(typtr->tyisem));
+		return (devcall)OK;
 
 	case TC_ECHO:
 		typtr->tyiecho = TRUE;
