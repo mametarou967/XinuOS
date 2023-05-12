@@ -110,6 +110,10 @@ $(DEPSFILE):
 	@echo "" > $(DEPSFILE)
 	@make depend
 
+rebuild:
+	@echo Rebuilding the $(DEFSFILE) file
+	@$(BUILDMAKE) $(REBUILDFLAGS) > $(DEFSFILE)
+
 defclean:
 	rm -f $(DEFSFILE)
 	echo "" > $(DEFSFILE)
