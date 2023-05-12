@@ -40,8 +40,7 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/rfs			\
 			-s $(TOPDIR)/device/spi			\
 			-s $(TOPDIR)/device/pipe		\
-			-s $(TOPDIR)/device/gpio		\
-			-s $(TOPDIR)/shell  'xsh_rdstest*'
+			-s $(TOPDIR)/device/gpio		
 
 INCLUDE		=	-I$(TOPDIR)/include
 DEFS		= 	-DBSDURG -DVERSION=\""`cat $(VERSIONFILE)`"\"

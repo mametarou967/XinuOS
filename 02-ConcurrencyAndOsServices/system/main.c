@@ -15,7 +15,7 @@ process	main(void)
 	/* Run the Xinu shell */
 
 	recvclr();
-	resume(shpid = create(shell, 8192, 50, "shell", 1, CONSOLE));
+	kprintf("\n\nHello Xinu. This is DUMMY SHELL\n\n");
 
 	/* Wait for shell to exit and recreate it */
 
@@ -23,7 +23,7 @@ process	main(void)
 	    if (receive() == shpid) {
 		sleepms(200);
 		kprintf("\n\nMain process recreating shell\n\n");
-		resume(shpid = create(shell, 4096, 20, "shell", 1, CONSOLE));
+		// resume(shpid = create(shell, 4096, 20, "shell", 1, CONSOLE));
 	    }
 	}
 	return OK;
