@@ -35,18 +35,7 @@ status	getutime(
 
 	/* Verify that we have obtained an IP address */
 
-	if (getlocalip() == SYSERR) {
-		return SYSERR;
-	}
-
-	/* If the DHCP response did not contain an NTP server address	*/
-	/*	use the default server					*/
-
-	if (NetData.ntpserver == 0) {
-		if (dnslookup(TIMESERVER, &NetData.ntpserver) == SYSERR) {
-			return SYSERR;
-		}
-	}
+	return SYSERR; 
 
 	/* Contact the time server to get the date and time */
 

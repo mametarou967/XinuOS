@@ -41,8 +41,6 @@ REBUILDFLAGS	=	-s $(TOPDIR)/system  debug.c 	\
 			-s $(TOPDIR)/device/spi			\
 			-s $(TOPDIR)/device/pipe		\
 			-s $(TOPDIR)/device/gpio		\
-			-s $(TOPDIR)/net  'arp_dump*'  		\
-				'dhcp_dump*'  pxe.c		\
 			-s $(TOPDIR)/shell  'xsh_rdstest*'
 
 INCLUDE		=	-I$(TOPDIR)/include
