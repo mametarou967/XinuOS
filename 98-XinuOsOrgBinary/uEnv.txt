@@ -1,0 +1,4 @@
+bootfile=xinu.boot 
+boot_mmc=fatload mmc 0 0x80200000 ${bootfile}; bootm 
+uenvcmd=run boot_mmc
+
