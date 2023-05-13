@@ -14,12 +14,7 @@ typedef	unsigned long long uint64;
 
 typedef	int16	qid16;		/* queue ID				*/
 typedef	int32	did32;		/* device ID				*/
-#define	MAXPRIO	0x7fff		/* Maximum possible priority		*/
-typedef	uint32	umsg32;		/* message passed among processes	*/
-typedef	int32	bpid32;		/* buffer pool ID			*/
 typedef	byte	bool8;		/* Boolean type				*/
-typedef	int32	ibid32;		/* index block ID (used in file system)	*/
-typedef	int32	dbid32;		/* data block ID (used in file system)	*/
 
 /* Function declaration return types */
 
