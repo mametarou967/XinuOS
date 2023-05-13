@@ -4,7 +4,7 @@
 
 /* Device table entry */
 struct	dentry	{
-	int32   dvnum;
+	int32   dvnum; // no
 	int32   dvminor;
 	char    *dvname;
 	devcall (*dvinit) (struct dentry *);

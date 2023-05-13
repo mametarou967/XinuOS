@@ -20,9 +20,9 @@ struct	dentry	devtab[1] =
  */
 
 /* CONSOLE is tty */
-	{ 0, 0, "CONSOLE",
-	  (void *)ttyinit, (void *)NULL, (void *)NULL,
-	  (void *)ttyread, (void *)ttywrite, (void *)NULL,
-	  (void *)ttygetc, (void *)ttyputc, (void *)ttycontrol,
-	  (void *)0x44e09000, (void *)ttyhandler, 72 }
+	{ 0, 0, NULL,
+	  (void *)NULL, (void *)NULL, (void *)NULL,
+	  (void *)NULL, (void *)NULL, (void *)NULL,
+	  (void *)ttygetc, (void *)ttyputc, (void *)NULL,
+	  (void *)0x44e09000, (void *)NULL, 72 }
 };
