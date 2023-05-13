@@ -5,6 +5,3 @@
 #include <uart.h>
 #include <tty.h>
 #include <prototypes.h>
-#include <stdio.h>
-#include <string.h>
-#include <armv7a.h>

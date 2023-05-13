@@ -64,7 +64,6 @@ syscall kgetc(void)
 	volatile struct	uart_csreg *csrptr;
 	byte c;
 	struct	dentry	*devptr;
-	intmask	mask;
 
 	/* Disable interrupts */
 	// mask = disable();

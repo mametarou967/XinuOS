@@ -33,7 +33,6 @@ typedef int32	devcall;	/* device call declaration		*/
 typedef int32	shellcmd;	/* shell command declaration		*/
 typedef int32	process;	/* top-level function of a process	*/
 typedef	void	interrupt;	/* interrupt procedure			*/
-typedef	int32	status;		/* returned status value (OK/SYSERR)	*/
 
 #define local	static		/* Local procedure or variable declar.	*/
 
@@ -55,17 +54,8 @@ typedef	int32	status;		/* returned status value (OK/SYSERR)	*/
 #define	EOF	(-2)		/* End-of-file (usually from read)	*/
 #define	TIMEOUT	(-3)		/* system call timed out		*/
 
-extern	qid16	readylist;	/* global ID for list of ready processes*/
 
-#define	MINSTK	400		/* minimum stack size in bytes		*/
 
-#define	CONTEXT	64		/* bytes in a function call context on	*/
-				/* the run-time stack			*/
-#define	QUANTUM	2		/* time slice in milliseconds		*/
-
-/* Size of the stack for the null process */
-
-#define	NULLSTK		8192	/* stack size for null process		*/
 
 /* Prototypes of I/O functions used throughout the kernel */
 
