@@ -13,7 +13,7 @@ devcall	ttyputc(
 {
 	struct	ttycblk	*typtr;		/* Pointer to tty control block	*/
 
-	typtr = &ttytab[devptr->dvminor];
+	typtr = &ttytab;
 
 	/* Handle output CRLF by sending CR first */
 

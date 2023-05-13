@@ -27,10 +27,13 @@ extern	void	*_end;		/* End of Xinu code			*/
 
 void	nulluser()
 {
+	ttyinit();
+	
 	kprintf(CONSOLE_RESET);
 	kprintf("\n%s\n\n", VERSION);
 	
 	kprintf("Hello Xinu");
+	kprintf("Hello2 Xinu");
 	
 	while(1)
 	{

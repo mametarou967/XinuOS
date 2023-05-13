@@ -13,7 +13,7 @@ devcall	ttygetc(
 	char	ch;			/* Character to return		*/
 	struct	ttycblk	*typtr;		/* Pointer to ttytab entry	*/
 
-	typtr = &ttytab[devptr->dvminor];
+	typtr = &ttytab;
 
 	/* Wait for a character in the buffer and extract one character	*/
 

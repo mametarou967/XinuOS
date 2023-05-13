@@ -17,6 +17,8 @@ extern	int32	insw(int32, int32 ,int32);
 /* in file ttygetc.c */
 extern	devcall	ttygetc(struct dentry *);
 
+/* in file ttyinit.c */
+extern	devcall	ttyinit();
 /* in file ttykickout.c */
 extern	void	ttykickout(struct uart_csreg *);
 

@@ -2,20 +2,19 @@
 
 #include <xinu.h>
 
-struct	ttycblk	ttytab[Ntty];
+struct	ttycblk	ttytab;
 
 /*------------------------------------------------------------------------
  *  ttyinit  -  Initialize buffers and modes for a tty line
  *------------------------------------------------------------------------
  */
 devcall	ttyinit(
-	  struct dentry	*devptr		/* Entry in device switch table	*/
 	)
 {
 	struct	ttycblk	*typtr;		/* Pointer to ttytab entry	*/
 	struct	uart_csreg *uptr;	/* Address of UART's CSRs	*/
 
-	typtr = &ttytab[ devptr->dvminor ];
+	typtr = &ttytab;
 
 	/* Initialize values in the tty control block */
 
@@ -51,7 +50,7 @@ devcall	ttyinit(
 
 	/* Initialize the UART */
 
-	uptr = (struct uart_csreg *)devptr->dvcsr;
+	uptr = (struct uart_csreg *)0x44e09000;
 
 	/* Set baud rate */
 	uptr->lcr = UART_LCR_DLAB;
