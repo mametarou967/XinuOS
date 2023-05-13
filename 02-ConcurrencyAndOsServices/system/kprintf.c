@@ -52,44 +52,6 @@ syscall kputc(
 	return OK;
 }
 
-/*------------------------------------------------------------------------
- * kgetc - use polled I/O to read a character from the console serial line
- *------------------------------------------------------------------------
- */
-syscall kgetc(void)
-{
-	int irmask;
-	volatile struct	uart_csreg *csrptr;
-	byte c;
-
-	/* Disable interrupts */
-	// mask = disable();
-
-	csrptr = (struct uart_csreg *)0x44e09000;
-
-	/* Fail if no console device was found */
-	if (csrptr == NULL) {
-		// restore(mask);
-		return SYSERR;
-	}
-
-	irmask = csrptr->ier;		/* Save UART interrupt state.   */
-	csrptr->ier = 0;		/* Disable UART interrupts.     */
-
-	/* wait for UART transmit queue to empty */
-
-	while (0 == (csrptr->lsr & UART_LSR_DR)) {
-		; /* Do Nothing */
-	}
-
-	/* Read character from Receive Holding Register */
-
-	c = csrptr->rbr;
-	csrptr->ier = irmask;		/* Restore UART interrupts.     */
-
-	// restore(mask);
-	return c;
-}
 
 extern	void	_doprnt(char *, va_list, int (*)(int));
 

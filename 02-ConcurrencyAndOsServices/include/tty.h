@@ -24,37 +24,11 @@
 #define	TY_OMRAW	'R'		/* Raw output mode => no edits	*/
 
 struct	ttycblk	{			/* Tty line control block	*/
-	char	*tyihead;		/* Next input char to read	*/
-	char	*tyitail;		/* Next slot for arriving char	*/
-	char	tyibuff[TY_IBUFLEN];	/* Input buffer (holds one line)*/
-	sid32	tyisem;			/* Input semaphore		*/
+
 	char	*tyohead;		/* Next output char to xmit	*/
 	char	*tyotail;		/* Next slot for outgoing char	*/
 	char	tyobuff[TY_OBUFLEN];	/* Output buffer		*/
-	sid32	tyosem;			/* Output semaphore		*/
-	char	*tyehead;		/* Next echo char to xmit	*/
-	char	*tyetail;		/* Next slot to deposit echo ch	*/
-	char	tyebuff[TY_EBUFLEN];	/* Echo buffer			*/
-	char	tyimode;		/* Input mode raw/cbreak/cooked	*/
-	bool8	tyiecho;		/* Is input echoed?		*/
-	bool8	tyieback;		/* Do erasing backspace on echo?*/
-	bool8	tyevis;			/* Echo control chars as ^X ?	*/
-	bool8	tyecrlf;		/* Echo CR-LF for newline?	*/
-	bool8	tyicrlf;		/* Map '\r' to '\n' on input?	*/
-	bool8	tyierase;		/* Honor erase character?	*/
-	char	tyierasec;		/* Primary erase character	*/
-	char	tyierasec2;		/* Alternate erase character	*/
-	bool8	tyeof;			/* Honor EOF character?		*/
-	char	tyeofch;		/* EOF character (usually ^D)	*/
-	bool8	tyikill;		/* Honor line kill character?	*/
-	char	tyikillc;		/* Line kill character		*/
-	int32	tyicursor;		/* Current cursor position	*/
-	bool8	tyoflow;		/* Honor ostop/ostart?		*/
-	bool8	tyoheld;		/* Output currently being held?	*/
-	char	tyostop;		/* Character that stops output	*/
-	char	tyostart;		/* Character that starts output	*/
 	bool8	tyocrlf;		/* Output CR/LF for LF ?	*/
-	char	tyifullc;		/* Char to send when input full	*/
 };
 extern	struct	ttycblk	ttytab;
 

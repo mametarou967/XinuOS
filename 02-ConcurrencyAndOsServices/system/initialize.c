@@ -4,9 +4,6 @@
 
 #include <xinu.h>
 
-extern	void	start(void);	/* Start of Xinu code			*/
-extern	void	*_end;		/* End of Xinu code			*/
-
 /* Control sequence to reset the console colors and cusor positiion	*/
 
 #define	CONSOLE_RESET	" \033[0m\033[2J\033[;H"
