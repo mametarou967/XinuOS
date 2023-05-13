@@ -17,8 +17,6 @@ local	process startup(void);	/* Process to finish startup tasks	*/
 
 /* Declarations of major kernel variables */
 
-struct	procent	proctab[NPROC];	/* Process table			*/
-struct	sentry	semtab[NSEM];	/* Semaphore table			*/
 struct	memblk	memlist;	/* List of free memory blocks		*/
 
 /* Active system status */
@@ -67,32 +65,6 @@ void	nulluser()
  */
 local process	startup(void)
 {
-	// uint32	ipaddr;			/* Computer's IP address	*/
-	// char	str[128];		/* String used to format output	*/
-
-
-	/* Use DHCP to obtain an IP address and format it */
-
-	//ipaddr = getlocalip();
-	//if ((int32)ipaddr == SYSERR) {
-	//	kprintf("Cannot obtain an IP address\n");
-	//} else {
-		/* Print the IP in dotted decimal and hex */
-	//	ipaddr = NetData.ipucast;
-	//	sprintf(str, "%d.%d.%d.%d",
-	//		(ipaddr>>24)&0xff, (ipaddr>>16)&0xff,
-	//		(ipaddr>>8)&0xff,        ipaddr&0xff);
-	
-	//	kprintf("Obtained IP address  %s   (0x%08x)\n", str,
-	//							ipaddr);
-	//}
-	/* Create a process to execute function main() */
-
-	resume(create((void *)main, INITSTK, INITPRIO,
-					"Main process", 0, NULL));
-
-	/* Startup process exits at this point */
-
 	return OK;
 }
 
@@ -106,7 +78,6 @@ local process	startup(void)
 static	void	sysinit()
 {
 	int32	i;
-	struct	procent	*prptr;		/* Ptr to process table entry	*/
 	struct	sentry	*semptr;	/* Ptr to semaphore table entry	*/
 
 	/* Reset the console */
@@ -131,40 +102,6 @@ static	void	sysinit()
 	/* Count the Null process as the first process in the system */
 
 	prcount = 1;
-
-	/* Scheduling is not currently blocked */
-
-	Defer.ndefers = 0;
-
-	/* Initialize process table entries free */
-
-	for (i = 0; i < NPROC; i++) {
-		prptr = &proctab[i];
-		prptr->prstate = PR_FREE;
-		prptr->prname[0] = NULLCH;
-		prptr->prstkbase = NULL;
-		prptr->prprio = 0;
-	}
-
-	/* Initialize the Null process entry */	
-
-	prptr = &proctab[NULLPROC];
-	prptr->prstate = PR_CURR;
-	prptr->prprio = 0;
-	strncpy(prptr->prname, "prnull", 7);
-	prptr->prstkbase = getstk(NULLSTK);
-	prptr->prstklen = NULLSTK;
-	prptr->prstkptr = 0;
-	currpid = NULLPROC;
-	
-	/* Initialize semaphores */
-
-	for (i = 0; i < NSEM; i++) {
-		semptr = &semtab[i];
-		semptr->sstate = S_FREE;
-		semptr->scount = 0;
-		semptr->squeue = newqueue();
-	}
 
 	/* Initialize buffer pools */
 
