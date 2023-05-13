@@ -15,10 +15,6 @@ static	void sysinit(); 	/* Internal system initialization	*/
 extern	void meminit(void);	/* Initializes the free memory list	*/
 local	process startup(void);	/* Process to finish startup tasks	*/
 
-/* Declarations of major kernel variables */
-
-struct	memblk	memlist;	/* List of free memory blocks		*/
-
 /* Active system status */
 
 int	prcount;		/* Total number of live processes	*/
@@ -129,8 +125,3 @@ int32	stop(char *s)
 		/* Empty */;
 }
 
-int32	delay(int n)
-{
-	DELAY(n);
-	return OK;
-}

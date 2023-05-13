@@ -15,11 +15,7 @@ syscall	putc(
 	struct dentry	*devptr;	/* Entry in device switch table	*/
 	int32		retval;		/* Value to return to caller	*/
 
-	// mask = disable();
-	if (isbaddev(descrp)) {
-		// restore(mask);
-		return SYSERR;
-	}
+
 	devptr = (struct dentry *) &devtab[descrp];
 	retval = (*devptr->dvputc) (devptr, ch);
 	// restore(mask);
