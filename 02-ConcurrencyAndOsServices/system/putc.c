@@ -7,16 +7,11 @@
  *------------------------------------------------------------------------
  */
 syscall	putc(
-	  did32		descrp,		/* Descriptor for device	*/
 	  char		ch		/* Character to send		*/
 	)
 {
-	struct dentry	*devptr;	/* Entry in device switch table	*/
 	int32		retval;		/* Value to return to caller	*/
 
-
-	devptr = (struct dentry *) &devtab[descrp];
-	retval = (*devptr->dvputc) (devptr, ch);
-	// restore(mask);
+	retval = ttyputc(ch);
 	return retval;
 }

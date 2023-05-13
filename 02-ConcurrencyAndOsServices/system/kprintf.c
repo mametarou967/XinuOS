@@ -11,7 +11,6 @@ syscall kputc(
 	  byte	c			/* character to write		*/
 	)
 {
-	struct	dentry	*devptr;
 	volatile struct	uart_csreg *csrptr;
 	// intmask	mask;
 
@@ -20,8 +19,7 @@ syscall kputc(
 
 	/* Get CSR address of the console */
 
-	devptr = (struct dentry *) &devtab[CONSOLE];
-	csrptr = (struct uart_csreg *)devptr->dvcsr;
+	csrptr = (struct uart_csreg *)0x44e09000;
 
 	/* Fail if no console device was found */
 
@@ -63,13 +61,11 @@ syscall kgetc(void)
 	int irmask;
 	volatile struct	uart_csreg *csrptr;
 	byte c;
-	struct	dentry	*devptr;
 
 	/* Disable interrupts */
 	// mask = disable();
 
-	devptr = (struct dentry *) &devtab[CONSOLE];
-	csrptr = (struct uart_csreg *)devptr->dvcsr;
+	csrptr = (struct uart_csreg *)0x44e09000;
 
 	/* Fail if no console device was found */
 	if (csrptr == NULL) {

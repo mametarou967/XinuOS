@@ -7,7 +7,6 @@
  *------------------------------------------------------------------------
  */
 devcall	ttyputc(
-	struct	dentry	*devptr,	/* Entry in device switch table	*/
 	char	ch			/* Character to write		*/
 	)
 {
@@ -18,7 +17,7 @@ devcall	ttyputc(
 	/* Handle output CRLF by sending CR first */
 
         if ( ch==TY_NEWLINE && typtr->tyocrlf ) {
-                ttyputc(devptr, TY_RETURN);
+                ttyputc(TY_RETURN);
 	}
 
 	// wait(typtr->tyosem);		/* Wait	for space in queue */
@@ -32,7 +31,7 @@ devcall	ttyputc(
 
 	/* Start output in case device is idle */
 
-	ttykickout((struct uart_csreg *)devptr->dvcsr);
+	ttykickout((struct uart_csreg *)0x44e09000);
 
 	return OK;
 }
