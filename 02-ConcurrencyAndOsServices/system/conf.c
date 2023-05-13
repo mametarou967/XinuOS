@@ -8,7 +8,7 @@
 
 /* Device independent I/O switch */
 
-struct	dentry	devtab[NDEVS] =
+struct	dentry	devtab[1] =
 {
 /**
  * Format of entries is:
