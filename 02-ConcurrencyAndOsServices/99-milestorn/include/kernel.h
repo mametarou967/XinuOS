@@ -12,6 +12,8 @@ typedef	unsigned long long uint64;
 
 /* Xinu-specific types */
 
+typedef	int16	qid16;		/* queue ID				*/
+typedef	int32	did32;		/* device ID				*/
 typedef	byte	bool8;		/* Boolean type				*/
 
 /* Function declaration return types */
@@ -38,6 +40,9 @@ typedef int32	devcall;	/* device call declaration		*/
 #define	SYSERR	(-1)		/* system call failed			*/
 #define	EOF	(-2)		/* End-of-file (usually from read)	*/
 #define	TIMEOUT	(-3)		/* system call timed out		*/
+
+
+
 
 /* Prototypes of I/O functions used throughout the kernel */
 
