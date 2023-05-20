@@ -1,12 +1,6 @@
-# 方針
+# UARTの初期化値
 
-* uartの資料調査について
-* uartとttyの違いについて
-* Startupコードについて
-* Makefileについて
-* コンパイルオプションについて
-
-## UARTの初期化値
+UARTについては以下の項目が設定されていれば良い
 
 |項目名|値|
 |:---|:---|
@@ -15,7 +9,8 @@
 |パリティビット|なし|
 |ストップビット|1bit|
 
-## ボーレートの設定方法
+
+# ボーレートの設定方法
 
 ボーレートは48MHzを分周してつくられる。
 
@@ -28,9 +23,24 @@
 
 今回は115200bpsのため、`DLH=0x00`、`DLL=0x26`を設定すればよい。
 
+ここで、DLH,DLLレジスタへのアクセス方法を調査すると
 
-## 初期化手順
+「**19.3.7.1.1 Operational Mode and Configuration Modes**」に以下のような説明がある。
 
+* UARTのベースレジスタは以下の通り
+![](images/UartRegister1.png)
+* レジスタアクセスには以下のようなモードがある
+    * Operation mode
+    * Configuration mode A
+    * Configuration mode B
+* レジスタのアクセスモードは以下のような方法で変更できる
+![](images/UartAccessRegister1.png)
+* レジスタのアクセスモードに応じて内容が切り替わるレジスタは以下の通り
+![](images/UartAccessRegister2.png)
+
+これらのことからConfigurationモードを変更した後に、`DLH`,`DLL`を変更すれば良いことがわかる。
+
+具体的なコードは以下の通り
 
 ```C
 #define	dll	buffer
@@ -57,28 +67,40 @@ uptr->dll = UART_DLL; // = 26
 
 ```
 
+## データビット数、パリティビット、ストップビットの設定方法
 
-## UARTに関するレジスタについて調べよう
+![](images/UartRegister4.png)
 
-### レジスタアクセスモード
+```C
+#define	UART_LCR_8N1	0x03
 
-#### 「19.3.7.1.1」Operational Mode and Configuration Modes」について
+uptr->lcr = UART_LCR_8N1;       /* 8 bit char, No Parity, 1 Stop*/
+```
+## 送信バッファと受信バッファのクリア
 
-レジスタアクセスはレジスタアクセスモードに依存します。
-モードは以下の３つがあります
-* Operational Mode:このモードではデータ転送が可能です
-* Configuration mode A/B:モジュールの初期化ステップで使用されます。Operational Modeでは画されているレジスタにアクセスできます
+FIFOを有効にし、送信バッファと受信バッファをクリアします。
 
-![](images/UartAccessRegister1.png)
+![](images/UartFifo1.png)
 
-ARM Cortex-A8のメモリマップ(Table 2-1. L3 Memory Map)を調べると以下のような記述がある。
+```C
+uptr->fcr = UART_FCR_EFIFO | UART_FCR_RRESET | UART_FCR_TRESET;
+```
 
-![](images/UartRegister1.png)
+## プロトコルフォーマット
 
-ARM Cortex-A8ではメモリアドレス`0x44E09000`から開始4KBの領域がUART0のレジスタに割り当てられている。
+プロトコルを選択します。`UART 16x mode`を選択します。
 
-UART Registerの詳細は以下の通り。
+![](images/UartProtocol.png)
 
-![](images/UartRegister2.png)
+```C
+uptr->mdr1 = UART_MDR1_16X;
+```
 
-![](images/UartRegister3.png)
+
+# 方針
+
+* uartの資料調査について
+* uartとttyの違いについて
+* Startupコードについて
+* Makefileについて
+* コンパイルオプションについて

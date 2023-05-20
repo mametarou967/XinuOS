@@ -42,7 +42,7 @@ devcall	ttyinit(
 	/*   receive FIFOS, and set the interrupt trigger level		*/
 
 	uptr->fcr = UART_FCR_EFIFO | UART_FCR_RRESET |
-			UART_FCR_TRESET | UART_FCR_TRIG2;
+			UART_FCR_TRESET;
 
 	/* UART must be in 16x mode (TI AM335X specific) */
 
@@ -50,6 +50,6 @@ devcall	ttyinit(
 
 	/* Start the device */
 
-	ttykickout(uptr);
+	// ttykickout(uptr);
 	return OK;
 }
